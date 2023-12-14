@@ -9,6 +9,35 @@
   grid-template-columns: repeat(3, auto);
 }
 
+.cell.x::before,
+.cell.x::after {
+  background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  background-color: lightgrey;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--mark-size) * 0.05);
+  height: var(--mark-size);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+  transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+  transform: rotate(-45deg);
+}
+
 .cell {
   width: var(--cell-size);
   height: var(--cell-size);
@@ -17,6 +46,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
+}
+
+.cell.x,
+.cell.circle {
+  cursor: not-allowed;
 }
 
 .cell:first-child,
@@ -40,22 +76,6 @@
 }
 
 .cell.x {
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: calc(var(--mark-size) * 0.05);
-    height: var(--mark-size);
-    background-color: black;
-  }
-
-  &::before {
-    transform: rotate(45deg);
-  }
-
-  &::after {
-    transform: rotate(-45deg);
-  }
 }
 
 .cell.circle {
