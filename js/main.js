@@ -20,6 +20,7 @@ const winningMessageElement = document.getElementById("winningMessage");
 const winningMessageTextElement = document.querySelector(
   "[data-winning-message-text]"
 );
+const restartButton = document.getElementById("restartButton");
 
 let circleTurn;
 
@@ -91,9 +92,15 @@ const handleClick = (e) => {
 const startGame = () => {
   circleTurn = false;
   cells.forEach((cell) => {
+    cell.classList.remove(X_CLASS);
+    cell.classList.remove(CIRCLE_CLASS);
+    cell.removeEventListener("click", handleClick);
     cell.addEventListener("click", handleClick, { once: true });
   });
   setBoardHoverClass();
+  winningMessageElement.classList.remove("show");
 };
+
+restartButton.addEventListener("click", startGame);
 
 startGame();
