@@ -137,9 +137,14 @@
   font-size: 3rem;
 
   display: flex;
+  visibility: hidden;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &.show {
+    visibility: visible;
+  }
 }
 
 .winning-message button {
